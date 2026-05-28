@@ -323,7 +323,7 @@
 <nav>
   <a href="#" class="nav-logo">
     <svg class="nav-cube" viewBox="0 0 36 36" style="display:none"></svg>
-    <img src="cube.png" class="nav-cube" alt="Badrock" style="width:38px;height:38px;object-fit:contain;filter:brightness(1.1)">
+    <img src="cube.png" class="nav-cube" alt="Badrock" style="width:38px;height:38px;object-fit:contain;mix-blend-mode:lighten;background:transparent">
     <div class="nav-logo-text">
       <span class="nav-logo-main">BADROCK</span>
       <span class="nav-logo-sub">CAPITAL</span>
@@ -336,6 +336,7 @@
     <li><a href="#comotrabalho">Como trabalho</a></li>
     <li><a href="#paraquem">Para quem</a></li>
     <li><a href="#contato">Contato</a></li>
+    <li><a href="#" style="color:var(--blue-light);opacity:0.6" title="Em breve">Educacional &#128274;</a></li>
   </ul>
   <div class="nav-right">
     <a href="#contato" class="nav-cta">Agendar conversa &rarr;</a>
@@ -349,86 +350,24 @@
 
     <div class="hero-title-wrap">
       <div class="hero-cube-icon">
-        <img src="cube.png" alt="Badrock" style="width:60px;height:60px;object-fit:contain;filter:brightness(1.1);margin-top:4px">
+        <img src="cube.png" alt="Badrock" style="width:60px;height:60px;object-fit:contain;mix-blend-mode:lighten;background:transparent;margin-top:4px">
       </div>
       <h1 class="hero-title">A base sólida para<br>decisões financeiras<br><em>melhores.</em></h1>
     </div>
 
     <p class="hero-desc">Bedrock é a rocha mais profunda da crosta terrestre — a base sobre a qual tudo se sustenta. É assim que pensamos sobre patrimônio: construído sobre fundamentos sólidos, sem atalhos.</p>
 
-    <div class="hero-tabs">
-      <button class="hero-tab active" onclick="setTab(this,'consultoria')">Consultoria</button>
-      <button class="hero-tab" onclick="setTab(this,'educacional')">Educacional &#128274;</button>
-    </div>
-
     <div class="hero-actions" id="tab-consultoria">
       <a href="#contato" class="btn-primary">Agendar conversa &rarr;</a>
       <a href="#como" class="btn-ghost">Como funciona</a>
     </div>
-    <div class="hero-actions" id="tab-educacional" style="display:none">
-      <a href="#contato" class="btn-edu">Em breve &rarr;</a>
-    </div>
   </div>
 
-  <!-- PIRÂMIDE DOS PILARES -->
+  <!-- PIRÂMIDE — imagem real -->
   <div class="hero-visual">
-    <div class="pyramid-card">
-      <div class="pyramid-label">Pilares de investimentos</div>
-      <div class="pyramid">
-        <div class="layer-apex"></div>
-
-        <div class="pyramid-layer layer-5">
-          <div class="pyramid-layer-inner">
-            <span class="layer-icon">&#127807;</span>
-            <div class="layer-content">
-              <div class="layer-title">Legado e propósito</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pyramid-layer layer-4">
-          <div class="pyramid-layer-inner">
-            <span class="layer-icon">&#128737;</span>
-            <div class="layer-content">
-              <div class="layer-title">Crescimento e diversificação</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pyramid-layer layer-3">
-          <div class="pyramid-layer-inner">
-            <span class="layer-icon">&#127919;</span>
-            <div class="layer-content">
-              <div class="layer-title">Proteção e controle de riscos</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pyramid-layer layer-2">
-          <div class="pyramid-layer-inner">
-            <span class="layer-icon">&#128176;</span>
-            <div class="layer-content">
-              <div class="layer-title">Acumulação e eficiência</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pyramid-layer layer-1">
-          <div class="layer-1-bg"></div>
-          <div class="layer-1-overlay"></div>
-          <div class="pyramid-layer-inner">
-            <span class="layer-icon">&#127963;</span>
-            <div class="layer-content">
-              <div class="layer-title">Base sólida — Caixa e fluxo</div>
-              <div class="layer-desc">Organização, controle e reserva. O alicerce de tudo.</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="pyramid-tagline">Da rocha inabalável ao topo da liberdade financeira.</div>
+    <div class="pyramid-card" style="padding:0;overflow:hidden;background:transparent;border:none">
+      <img src="pyramid.png" alt="Pilares de Investimentos Badrock Capital" style="width:100%;display:block;border-radius:0">
     </div>
-
     <div class="stat-row">
       <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Independente</span></div>
       <div class="stat"><span class="stat-n">0</span><span class="stat-l">Comissão oculta</span></div>
@@ -479,41 +418,39 @@
 <!-- GRÁFICO -->
 <section id="grafico">
   <div class="wrap">
-    <div class="tag">Consistência que importa</div>
-    <div class="chart-grid">
+    <div class="tag">Filosofia de investimentos</div>
+    <div class="chart-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
       <div class="chart-text">
-        <h3>Rentabilidade<br><em>consistente</em><br>acima da média</h3>
-        <p>O objetivo não é bater o mercado todo mês. É construir uma carteira que cresce de forma consistente, protegida e alinhada com os seus objetivos ao longo do tempo.</p>
+        <h3>Rentabilidade<br>não significa<br><em>assumir risco.</em></h3>
+        <p>O mercado vende a ideia de que para ganhar mais, é preciso arriscar mais. Discordamos. Uma carteira bem estruturada cresce de forma consistente sem colocar em risco o que você levou anos construindo.</p>
         <p>Vamos desenvolver os dados reais de performance em breve.</p>
-        <div class="chart-metrics">
+        <div class="chart-metrics" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:28px">
           <div class="metric"><span class="metric-n"><em>+</em> CDI</span><span class="metric-l">Renda fixa inteligente</span></div>
           <div class="metric"><span class="metric-n"><em>&#8595;</em> risco</span><span class="metric-l">Gestão de volatilidade</span></div>
           <div class="metric"><span class="metric-n">longo</span><span class="metric-l">Prazo de referência</span></div>
           <div class="metric"><span class="metric-n">seu</span><span class="metric-l">Objetivo que define tudo</span></div>
         </div>
       </div>
-      <div>
-        <div class="chart-box">
-          <div class="chart-box-label">Rentabilidade acumulada (ilustrativo)</div>
-          <div class="chart-box-val">+47,3% <em>&uarr; consistente</em></div>
-          <div class="chart-svg-wrap">
-            <svg class="chart-svg" viewBox="0 0 300 140" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="chartGrad2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#2563eb" stop-opacity="0.4"/>
-                  <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path class="chart-area" d="M0,120 C30,112 50,105 80,95 C110,85 125,88 150,72 C175,56 185,60 210,44 C235,28 255,32 300,8 L300,140 L0,140 Z"/>
-              <path class="chart-line" d="M0,120 C30,112 50,105 80,95 C110,85 125,88 150,72 C175,56 185,60 210,44 C235,28 255,32 300,8"/>
-              <line x1="0" y1="35" x2="300" y2="35" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-              <line x1="0" y1="70" x2="300" y2="70" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-              <line x1="0" y1="105" x2="300" y2="105" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-              <circle class="chart-pulse" cx="300" cy="8" r="4" fill="#2563eb"/>
-            </svg>
-          </div>
-          <div class="chart-disc">Exemplo ilustrativo &middot; não representa garantia de retorno &middot; dados em desenvolvimento</div>
+      <div class="chart-box">
+        <div class="chart-box-label">Rentabilidade acumulada (ilustrativo)</div>
+        <div class="chart-box-val">+47,3% <em>&uarr; consistente</em></div>
+        <div class="chart-svg-wrap">
+          <svg class="chart-svg" viewBox="0 0 300 140" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGrad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2563eb" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path class="chart-area" d="M0,120 C30,112 50,105 80,95 C110,85 125,88 150,72 C175,56 185,60 210,44 C235,28 255,32 300,8 L300,140 L0,140 Z"/>
+            <path class="chart-line" d="M0,120 C30,112 50,105 80,95 C110,85 125,88 150,72 C175,56 185,60 210,44 C235,28 255,32 300,8"/>
+            <line x1="0" y1="35" x2="300" y2="35" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="0" y1="70" x2="300" y2="70" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="0" y1="105" x2="300" y2="105" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <circle class="chart-pulse" cx="300" cy="8" r="4" fill="#2563eb"/>
+          </svg>
         </div>
+        <div class="chart-disc">Exemplo ilustrativo &middot; não representa garantia de retorno &middot; dados em desenvolvimento</div>
       </div>
     </div>
   </div>
@@ -626,7 +563,7 @@
     <h2 class="sec-title">O que você recebe<br><em>na prática</em></h2>
     <p class="sec-desc">Clareza, acompanhamento e acesso à informação relevante — sem ruído, sem jargão.</p>
 
-    <div class="ct-grid">
+    <div class="ct-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
       <!-- COLUNA ESQUERDA — Portfólio -->
       <div class="ct-col">
         <div class="ct-header">Seu portfólio de investimentos</div>
