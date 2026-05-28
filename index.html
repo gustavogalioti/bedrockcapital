@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black:#0a0a0a;--dark:#111111;--dark2:#1a1a1a;--dark3:#222222;
-    --gray:#2e2e2e;--gray2:#444;--gray3:#666;--gray4:#999;
+    --black:#2a2a2a;--dark:#323232;--dark2:#3a3a3a;--dark3:#424242;
+    --gray:#4a4a4a;--gray2:#5a5a5a;--gray3:#888;--gray4:#aaa;
     --white:#f5f5f5;--white2:#e0e0e0;
     --blue:#2563eb;--blue-light:#3b82f6;--blue-dark:#1d4ed8;--blue-glow:rgba(37,99,235,0.25);
     --gold:#c9a84c;
-    --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+    --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.15);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -83,81 +83,39 @@
 
   .pyramid-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--gray3);text-transform:uppercase;margin-bottom:20px}
 
-  /* PIRÂMIDE — formato triangular real com clip-path */
-  .pyramid{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%}
-
+  /* PIRÂMIDE — formato triangular com ponta */
+  .pyramid{display:flex;flex-direction:column;align-items:center;gap:0;width:100%}
   .pyramid-layer{position:relative;cursor:default;transition:filter .2s;display:flex;align-items:center;justify-content:center}
   .pyramid-layer:hover{filter:brightness(1.2)}
-
   .pyramid-layer-inner{display:flex;align-items:center;gap:8px;padding:8px 20px;width:100%;justify-content:center;text-align:center}
-
   .layer-icon{font-size:13px;flex-shrink:0}
   .layer-content{text-align:left}
   .layer-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;line-height:1.2}
   .layer-desc{font-family:'Barlow',sans-serif;font-size:9px;color:rgba(255,255,255,0.5);line-height:1.4;margin-top:1px}
 
-  /* Forma de pirâmide: cada camada vai alargando do topo para a base */
-  /* Topo — mais estreito, com clip triangular */
-  .layer-5{
-    width:100%;
-    clip-path:polygon(35% 0%, 65% 0%, 72% 100%, 28% 100%);
-    background:linear-gradient(180deg,#1a3a1a,#2d5a2d);
-    border-bottom:1px solid rgba(74,222,128,0.3);
-    min-height:52px;
-  }
+  /* PONTA triangular pura */
+  .layer-apex{width:100%;height:40px;background:#1a3a1a;clip-path:polygon(50% 0%,61% 100%,39% 100%)}
+
+  .layer-5{width:100%;clip-path:polygon(39% 0%,61% 0%,68% 100%,32% 100%);background:linear-gradient(180deg,#1a3a1a,#2d5a2d);min-height:48px}
   .layer-5 .layer-title{color:#4ade80;font-size:9px}
   .layer-5 .layer-desc{display:none}
 
-  .layer-4{
-    width:100%;
-    clip-path:polygon(28% 0%, 72% 0%, 79% 100%, 21% 100%);
-    background:linear-gradient(180deg,#1a2a3a,#1e3d6a);
-    border-bottom:1px solid rgba(37,99,235,0.3);
-    min-height:52px;
-  }
+  .layer-4{width:100%;clip-path:polygon(32% 0%,68% 0%,75% 100%,25% 100%);background:linear-gradient(180deg,#1a2a3a,#1e3d6a);min-height:48px}
   .layer-4 .layer-title{color:#93c5fd;font-size:10px}
   .layer-4 .layer-desc{display:none}
 
-  .layer-3{
-    width:100%;
-    clip-path:polygon(21% 0%, 79% 0%, 86% 100%, 14% 100%);
-    background:linear-gradient(180deg,#2a1a3a,#4a2a5a);
-    border-bottom:1px solid rgba(168,85,247,0.25);
-    min-height:52px;
-  }
+  .layer-3{width:100%;clip-path:polygon(25% 0%,75% 0%,82% 100%,18% 100%);background:linear-gradient(180deg,#2a1a3a,#4a2a5a);min-height:48px}
   .layer-3 .layer-title{color:#c084fc;font-size:10px}
   .layer-3 .layer-desc{display:none}
 
-  .layer-2{
-    width:100%;
-    clip-path:polygon(14% 0%, 86% 0%, 93% 100%, 7% 100%);
-    background:linear-gradient(180deg,#2a2a1a,#4a3a10);
-    border-bottom:1px solid rgba(201,168,76,0.3);
-    min-height:52px;
-  }
+  .layer-2{width:100%;clip-path:polygon(18% 0%,82% 0%,89% 100%,11% 100%);background:linear-gradient(180deg,#2a2a1a,#4a3a10);min-height:48px}
   .layer-2 .layer-title{color:#fbbf24;font-size:10px}
   .layer-2 .layer-desc{display:none}
 
-  /* BASE — bedrock texture usando imagem real */
-  .layer-1{
-    width:100%;
-    position:relative;
-    overflow:hidden;
-    min-height:72px;
-    border:1px solid rgba(255,255,255,0.15);
-    background:#111;
-  }
-  .layer-1-bg{
-    position:absolute;inset:0;
-    background-image:url('bedrock-texture.jpg');
-    background-size:cover;background-position:center;
-    opacity:0.55;
-    filter:grayscale(20%);
-  }
-  .layer-1-overlay{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(10,10,30,0.5),rgba(10,10,20,0.2));
-  }
+  /* BASE com clip + bedrock texture */
+  .layer-1{width:100%;clip-path:polygon(11% 0%,89% 0%,100% 100%,0% 100%);position:relative;overflow:hidden;min-height:64px;background:#111}
+  .layer-1-bg{position:absolute;inset:0;background-image:url('bedrock-texture.jpg');background-size:cover;background-position:center;opacity:0.5;filter:grayscale(20%)}
+  .layer-1-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,30,0.5),rgba(10,10,20,0.25))}
   .layer-1 .pyramid-layer-inner{position:relative;z-index:2}
   .layer-1 .layer-title{color:var(--blue-light);font-size:11px}
   .layer-1 .layer-desc{display:block;font-size:10px;color:rgba(255,255,255,0.65)}
@@ -174,12 +132,12 @@
 
   /* SECTIONS */
   section{position:relative;z-index:1}
-  .wrap{max-width:1100px;margin:0 auto;padding:100px 56px}
+  .wrap{max-width:1100px;margin:0 auto;padding:64px 56px}
   .tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--blue-light);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px}
   .tag::before{content:'';width:16px;height:1px;background:var(--blue-light);flex-shrink:0}
   .sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(32px,3.8vw,56px);color:var(--white);line-height:1.1;margin-bottom:16px;letter-spacing:-0.5px;text-transform:uppercase}
   .sec-title em{color:var(--blue-light);font-style:normal}
-  .sec-desc{font-family:'Barlow',sans-serif;font-size:18px;font-weight:300;color:var(--gray4);line-height:1.85;max-width:540px;margin-bottom:56px}
+  .sec-desc{font-family:'Barlow',sans-serif;font-size:18px;font-weight:300;color:var(--gray4);line-height:1.85;max-width:540px;margin-bottom:40px}
 
   /* A BADROCK */
   #aboutus{background:var(--dark)}
@@ -301,6 +259,29 @@
   .f-submit{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#fff;background:var(--blue);border:none;padding:17px;cursor:pointer;width:100%;margin-top:6px;transition:background .2s}
   .f-submit:hover{background:var(--blue-dark)}
 
+  /* COMO TRABALHO */
+  #comotrabalho{background:var(--dark2)}
+  .ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px}
+  .ct-col{display:flex;flex-direction:column;gap:2px}
+  .ct-header{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--blue-light);padding:16px 0 8px;border-bottom:1px solid var(--border2);margin-bottom:2px}
+  .ct-card{background:var(--dark3);border:1px solid var(--border);padding:28px 28px;transition:border-color .2s}
+  .ct-card:hover{border-color:rgba(37,99,235,0.35)}
+  .ct-card-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:10px}
+  .ct-card-body{font-family:'Barlow',sans-serif;font-size:15px;font-weight:300;color:var(--gray4);line-height:1.8}
+  .ct-card-body strong{color:var(--white);font-weight:600}
+  .ct-highlight{background:var(--blue-dark);border:1px solid var(--blue);padding:28px;margin-bottom:2px}
+  .ct-highlight-big{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(22px,3vw,34px);color:#fff;text-transform:uppercase;letter-spacing:-0.5px;line-height:1.2;margin-bottom:8px}
+  .ct-highlight-big em{color:#93c5fd;font-style:normal}
+  .ct-highlight-sub{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.7}
+  .ct-list{display:flex;flex-direction:column;gap:2px}
+  .ct-list-item{background:var(--dark3);border:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
+  .ct-list-item:hover{border-color:rgba(37,99,235,0.3)}
+  .ct-list-dot{width:6px;height:6px;background:var(--blue-light);flex-shrink:0}
+  .ct-list-text{font-family:'Barlow',sans-serif;font-size:15px;font-weight:300;color:var(--gray4);line-height:1.6}
+  .ct-list-text strong{color:var(--white);font-weight:600}
+  .ct-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);padding:3px 10px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--blue-light);margin-left:8px;vertical-align:middle}
+  .ct-divider{background:var(--gray);height:1px;margin:2px 0}
+
   /* FOOTER */
   footer{position:relative;z-index:1;background:var(--black);border-top:1px solid var(--border);padding:36px 56px;display:flex;align-items:center;justify-content:space-between}
   .f-logo{display:flex;align-items:center;gap:10px}
@@ -352,6 +333,7 @@
     <li><a href="#aboutus">A Badrock</a></li>
     <li><a href="#como">Como funciona</a></li>
     <li><a href="#preco">Investimento</a></li>
+    <li><a href="#comotrabalho">Como trabalho</a></li>
     <li><a href="#paraquem">Para quem</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -393,6 +375,7 @@
     <div class="pyramid-card">
       <div class="pyramid-label">Pilares de investimentos</div>
       <div class="pyramid">
+        <div class="layer-apex"></div>
 
         <div class="pyramid-layer layer-5">
           <div class="pyramid-layer-inner">
@@ -631,6 +614,63 @@
         <div class="nao-item"><div class="nao-px"></div><p class="nao-text">Quer garantia de rentabilidade acima do mercado.</p></div>
         <div class="nao-item"><div class="nao-px"></div><p class="nao-text">Não está disposto a ter visão de médio e longo prazo.</p></div>
         <a href="#contato" class="btn-primary" style="margin-top:20px">Verificar se sou o perfil &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO TRABALHO -->
+<section id="comotrabalho">
+  <div class="wrap">
+    <div class="tag">Como trabalho</div>
+    <h2 class="sec-title">O que você recebe<br><em>na prática</em></h2>
+    <p class="sec-desc">Clareza, acompanhamento e acesso à informação relevante — sem ruído, sem jargão.</p>
+
+    <div class="ct-grid">
+      <!-- COLUNA ESQUERDA — Portfólio -->
+      <div class="ct-col">
+        <div class="ct-header">Seu portfólio de investimentos</div>
+
+        <div class="ct-highlight">
+          <div class="ct-highlight-big">Melhorar seu<br><em>rendimento atual</em></div>
+          <div class="ct-highlight-sub">ou, no mínimo, <strong style="color:#fff">manter</strong> — com você sabendo e entendendo tudo o que está no seu portfólio de investimentos.</div>
+        </div>
+
+        <div class="ct-card">
+          <div class="ct-card-title">Estratégia conservadora máxima</div>
+          <p class="ct-card-body">Seguindo uma linha de <strong>máximo possível conservadora</strong> — tomando decisões baseadas em dados, números, estatísticas, projeções e simulações.</p>
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA — Acompanhamento -->
+      <div class="ct-col">
+        <div class="ct-header">Acompanhamento</div>
+
+        <div class="ct-list">
+          <div class="ct-list-item">
+            <div class="ct-list-dot"></div>
+            <p class="ct-list-text"><strong>Morning Call e Fechamento de Mercado</strong> por <span class="ct-badge">WhatsApp</span> e <span class="ct-badge">Spotify</span></p>
+          </div>
+          <div class="ct-list-item">
+            <div class="ct-list-dot"></div>
+            <p class="ct-list-text"><strong>Notícias relevantes</strong> ao longo do dia — explicadas, sem ruído</p>
+          </div>
+          <div class="ct-list-item">
+            <div class="ct-list-dot"></div>
+            <p class="ct-list-text"><strong>Cartas do gestor</strong> — análise e posicionamento estratégico</p>
+          </div>
+          <div class="ct-list-item">
+            <div class="ct-list-dot"></div>
+            <p class="ct-list-text"><strong>Resumo macro semanal</strong> em vídeo</p>
+          </div>
+        </div>
+
+        <div class="ct-divider"></div>
+
+        <div class="ct-card" style="margin-top:2px">
+          <div class="ct-card-title">Rede de contatos</div>
+          <p class="ct-card-body">Acesso à rede de profissionais e especialistas para decisões que vão além dos investimentos — jurídico, contábil, planejamento patrimonial.</p>
+        </div>
       </div>
     </div>
   </div>
