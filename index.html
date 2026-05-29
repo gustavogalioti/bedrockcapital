@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -485,25 +484,34 @@
 <section id="como">
   <div class="wrap">
     <div class="tag">Como funciona</div>
-    <h2 class="sec-title">Simples.<br><em>Do início ao fim.</em></h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-title">Conversa inicial</div>
-        <p class="step-desc">Entendemos seus investimentos atuais, objetivos e perfil. Sem julgamento, sem pressa. Essa conversa não tem custo.</p>
-        <div class="step-corner"></div>
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:2px;align-items:stretch">
+
+      <!-- TÍTULO grande à esquerda -->
+      <div style="background:var(--dark2);border:1px solid var(--border);padding:36px 32px;display:flex;flex-direction:column;justify-content:center">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(36px,4vw,52px);text-transform:uppercase;color:var(--white);line-height:1.0;letter-spacing:-1px;margin-bottom:16px">TRÊS<br>ETAPAS.<br><span style="color:var(--blue-light)">SEM<br>BUROCRACIA.</span></h2>
+        <p style="font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;color:var(--gray4);line-height:1.7">Um processo direto, transparente e focado em resultado real.</p>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-title">Construção do portfólio</div>
-        <p class="step-desc">Montamos uma carteira que faça sentido para você, que você entenda — e que possamos carregar e ajustar pelos ciclos econômicos.</p>
-        <div class="step-corner"></div>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-title">Informação diária</div>
-        <p class="step-desc">Você passa a receber diariamente o que está acontecendo no mundo. Informação clara, traduzida — sem ruído.</p>
-        <div class="step-corner"></div>
+
+      <!-- 3 colunas à direita -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
+        <div style="background:var(--dark3);border:1px solid var(--border);padding:28px 24px;position:relative">
+          <div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--blue-light);letter-spacing:2px;margin-bottom:16px">01 // DIAGNÓSTICO</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:10px">Entendemos você</div>
+          <p style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4);line-height:1.7">Uma conversa honesta sobre onde você está, o que tem, o que quer e em quanto tempo. Sem julgamento, sem pressa.</p>
+          <div style="position:absolute;bottom:0;right:0;width:16px;height:16px;background:var(--dark);clip-path:polygon(100% 0,100% 100%,0 100%)"></div>
+        </div>
+        <div style="background:var(--dark3);border:1px solid var(--border);padding:28px 24px;position:relative">
+          <div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--blue-light);letter-spacing:2px;margin-bottom:16px">02 // ESTRATÉGIA</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:10px">Construímos o plano</div>
+          <p style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4);line-height:1.7">Uma alocação personalizada com produtos e prazos definidos, explicando cada decisão em linguagem clara e direta.</p>
+          <div style="position:absolute;bottom:0;right:0;width:16px;height:16px;background:var(--dark);clip-path:polygon(100% 0,100% 100%,0 100%)"></div>
+        </div>
+        <div style="background:var(--dark3);border:1px solid var(--border);padding:28px 24px;position:relative">
+          <div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--blue-light);letter-spacing:2px;margin-bottom:16px">03 // ACOMPANHAMENTO</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:10px">Evoluímos juntos</div>
+          <p style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4);line-height:1.7">Revisões periódicas, suporte para decisões e ajustes sempre que sua vida ou o mercado mudarem. Você nunca decide sozinho.</p>
+          <div style="position:absolute;bottom:0;right:0;width:16px;height:16px;background:var(--dark);clip-path:polygon(100% 0,100% 100%,0 100%)"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -513,95 +521,77 @@
 <section id="preco">
   <div class="wrap">
     <div class="tag">Investimento</div>
-    <h2 class="sec-title">O que você paga.<br><em>O que você recebe.</em></h2>
-    <p class="sec-desc">Transparente. Sem entrelinhas. Preto no branco.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:2px;margin-bottom:2px;align-items:stretch">
+    <!-- LINHA SUPERIOR: título grande -->
+    <div style="background:var(--dark2);border:1px solid var(--border);padding:32px 40px;margin-bottom:2px">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);text-transform:uppercase;color:var(--white);line-height:1.05;letter-spacing:-0.5px;margin-bottom:8px">O QUE VOCÊ PAGA.<br><span style="color:var(--blue-light)">O QUE VOCÊ RECEBE.</span></h2>
+      <p style="font-family:'Barlow',sans-serif;font-size:15px;font-weight:300;color:var(--gray4)">Transparente. Sem entrelinhas. Preto no branco.</p>
+    </div>
 
-      <!-- PREÇO -->
-      <div class="preco-card-main" style="padding:40px">
+    <!-- 3 COLUNAS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:2px;margin-bottom:2px;align-items:stretch">
+
+      <!-- COLUNA 1 — PREÇO -->
+      <div class="preco-card-main" style="padding:32px">
         <div>
           <div class="preco-label">Taxa de consultoria</div>
-          <div class="preco-valor"><span>0,</span>1<span>%</span></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:72px;color:#fff;line-height:1;letter-spacing:-2px;margin-bottom:4px">0,<span style="font-size:72px">1</span><span style="font-size:28px;vertical-align:super;color:rgba(255,255,255,0.6)">%</span></div>
           <div class="preco-unidade">ao mês &middot; sobre o patrimônio assistido</div>
-          <div class="preco-exemplo">
+          <div class="preco-exemplo" style="margin-bottom:20px">
             <div class="preco-exemplo-label">Exemplo com R$ 100.000</div>
             <div class="preco-exemplo-calc">R$ 100.000 &times; 0,1% = <strong>R$ 100 / mês</strong></div>
           </div>
-          <div class="preco-slogan">Transparente.<br>Sem entrelinhas.<br>Preto no branco.</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:3px;color:rgba(255,255,255,0.9);line-height:2.2;text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px">TRANSPARENTE.<br>SEM ENTRELINHAS.<br><span style="color:#93c5fd">PRETO NO BRANCO.</span></div>
         </div>
-        <div class="preco-desc-main">O que você vê é o que você paga. Sem taxas ocultas, sem rebates, sem conflito de interesse disfarçado de conselho.</div>
       </div>
 
-      <!-- O QUE VOCÊ RECEBE — destaque total -->
+      <!-- COLUNA 2 — GARANTIAS -->
       <div style="display:flex;flex-direction:column;gap:2px">
-
-        <!-- Header destaque -->
-        <div style="background:var(--blue);padding:20px 28px;display:flex;align-items:center;justify-content:space-between">
-          <div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:#fff">O QUE VOCÊ RECEBE</div>
-            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.6);margin-top:2px">incluso na consultoria</div>
-          </div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;color:rgba(255,255,255,0.15);letter-spacing:-1px">→</div>
+        <div style="background:var(--dark3);border:1px solid var(--border);padding:24px;flex:1">
+          <div style="width:8px;height:8px;background:var(--blue-light);margin-bottom:12px"></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:var(--white);margin-bottom:8px">Sem taxa de performance</div>
+          <p style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4);line-height:1.7">Não cobramos sobre rentabilidade. Nossa remuneração não depende de te fazer tomar mais risco.</p>
         </div>
+        <div style="background:var(--dark3);border:1px solid var(--border);padding:24px;flex:1">
+          <div style="width:8px;height:8px;background:var(--blue-light);margin-bottom:12px"></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:var(--white);margin-bottom:8px">Sem produtos embutidos</div>
+          <p style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4);line-height:1.7">Não recebemos rebate de corretoras ou gestoras. O que você vê é o que você paga — nada mais.</p>
+        </div>
+        <div style="background:var(--dark3);border:1px solid var(--border);padding:24px;flex:1">
+          <div style="width:8px;height:8px;background:var(--blue-light);margin-bottom:12px"></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:var(--white);margin-bottom:8px">Alinhamento total</div>
+          <p style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4);line-height:1.7">Quanto mais seu patrimônio cresce, melhor para os dois. Nossos interesses são exatamente os mesmos.</p>
+        </div>
+      </div>
 
-        <!-- Lista do que recebe -->
+      <!-- COLUNA 3 — O QUE VOCÊ RECEBE destaque -->
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <div style="background:var(--blue);padding:18px 22px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:#fff">O QUE VOCÊ RECEBE</div>
+          <div style="font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;color:rgba(255,255,255,0.55);margin-top:2px">incluso na consultoria</div>
+        </div>
         <div style="display:flex;flex-direction:column;gap:2px;flex:1">
-          <div style="background:var(--dark3);border:1px solid var(--border);padding:16px 22px;display:flex;align-items:flex-start;gap:14px">
-            <div style="width:6px;height:6px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:2px">Portfólio personalizado</div>
-              <div style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4)">Construído para o seu perfil e objetivos. Revisado conforme os ciclos econômicos.</div>
-            </div>
+          <div style="background:var(--dark3);border:1px solid rgba(37,99,235,0.2);padding:14px 18px;display:flex;align-items:flex-start;gap:10px">
+            <div style="width:5px;height:5px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
+            <p style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--gray4);line-height:1.6"><strong style="color:var(--white);font-weight:600">Morning Call e Fechamento</strong> de Mercado por <span style="background:rgba(37,99,235,0.2);color:var(--blue-light);font-family:monospace;font-size:9px;padding:2px 6px">WhatsApp</span> e <span style="background:rgba(30,215,96,0.15);color:#1ed760;font-family:monospace;font-size:9px;padding:2px 6px">Spotify</span></p>
           </div>
-          <div style="background:var(--dark3);border:1px solid var(--border);padding:16px 22px;display:flex;align-items:flex-start;gap:14px">
-            <div style="width:6px;height:6px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:2px">Morning Call & Fechamento</div>
-              <div style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4)">Diariamente por <strong style="color:var(--white)">WhatsApp</strong> e <strong style="color:var(--white)">Spotify</strong>. O que está acontecendo, explicado.</div>
-            </div>
+          <div style="background:var(--dark3);border:1px solid rgba(37,99,235,0.2);padding:14px 18px;display:flex;align-items:flex-start;gap:10px">
+            <div style="width:5px;height:5px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
+            <p style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--gray4);line-height:1.6"><strong style="color:var(--white);font-weight:600">Notícias relevantes</strong> ao longo do dia — explicadas, sem ruído</p>
           </div>
-          <div style="background:var(--dark3);border:1px solid var(--border);padding:16px 22px;display:flex;align-items:flex-start;gap:14px">
-            <div style="width:6px;height:6px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:2px">Notícias relevantes</div>
-              <div style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4)">Ao longo do dia — filtradas, explicadas e sem ruído.</div>
-            </div>
+          <div style="background:var(--dark3);border:1px solid rgba(37,99,235,0.2);padding:14px 18px;display:flex;align-items:flex-start;gap:10px">
+            <div style="width:5px;height:5px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
+            <p style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--gray4);line-height:1.6"><strong style="color:var(--white);font-weight:600">Cartas do gestor</strong> — análise e posicionamento estratégico</p>
           </div>
-          <div style="background:var(--dark3);border:1px solid var(--border);padding:16px 22px;display:flex;align-items:flex-start;gap:14px">
-            <div style="width:6px;height:6px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:2px">Cartas do gestor & Resumo macro</div>
-              <div style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4)">Análise semanal em vídeo + posicionamento estratégico por escrito.</div>
-            </div>
+          <div style="background:var(--dark3);border:1px solid rgba(37,99,235,0.2);padding:14px 18px;display:flex;align-items:flex-start;gap:10px">
+            <div style="width:5px;height:5px;background:var(--blue-light);flex-shrink:0;margin-top:5px"></div>
+            <p style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--gray4);line-height:1.6"><strong style="color:var(--white);font-weight:600">Resumo macro semanal</strong> em vídeo</p>
           </div>
-          <div style="background:var(--dark3);border:1px solid var(--border);padding:16px 22px;display:flex;align-items:flex-start;gap:14px">
-            <div style="width:6px;height:6px;background:var(--gold);flex-shrink:0;margin-top:5px"></div>
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:2px">Rede de contatos</div>
-              <div style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:var(--gray4)">Acesso a especialistas: jurídico, contábil e planejamento patrimonial.</div>
-            </div>
+          <div style="background:var(--dark3);border:1px solid rgba(201,168,76,0.2);padding:14px 18px;display:flex;align-items:flex-start;gap:10px">
+            <div style="width:5px;height:5px;background:var(--gold);flex-shrink:0;margin-top:5px"></div>
+            <p style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--gray4);line-height:1.6"><strong style="color:var(--white);font-weight:600">Rede de contatos</strong> — jurídico, contábil, planejamento patrimonial</p>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- LINHA 2 — 3 garantias -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:2px">
-      <div class="preco-item">
-        <div class="preco-item-icon"></div>
-        <div class="preco-item-title">Sem taxa de performance</div>
-        <p class="preco-item-desc">Não cobramos sobre rentabilidade. Nossa remuneração não depende de te fazer tomar mais risco.</p>
-      </div>
-      <div class="preco-item">
-        <div class="preco-item-icon"></div>
-        <div class="preco-item-title">Sem produtos embutidos</div>
-        <p class="preco-item-desc">Não recebemos rebate de corretoras ou gestoras. O que você vê é o que você paga — nada mais.</p>
-      </div>
-      <div class="preco-item">
-        <div class="preco-item-icon"></div>
-        <div class="preco-item-title">Alinhamento total</div>
-        <p class="preco-item-desc">Quanto mais seu patrimônio cresce, melhor para os dois. Nossos interesses são exatamente os mesmos.</p>
       </div>
     </div>
 
