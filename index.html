@@ -431,50 +431,215 @@
 <section id="grafico">
   <div class="wrap">
     <div class="tag">Filosofia de investimentos</div>
-    <div class="chart-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
-      <div class="chart-text">
-        <h3>Rentabilidade<br>não significa<br><em>assumir risco.</em></h3>
-        <p>O mercado vende a ideia de que para ganhar mais, é preciso arriscar mais. Discordamos. Uma carteira bem estruturada cresce de forma consistente sem colocar em risco o que você levou anos construindo.</p>
-        <div class="chart-metrics" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:28px">
-          <div class="metric">
-            <span class="metric-n" style="font-size:16px;letter-spacing:0">Um portfólio é simples</span>
-            <span class="metric-l">de fazer e cuidar</span>
-          </div>
-          <div class="metric">
-            <span class="metric-n" style="font-size:16px;letter-spacing:0"><em>Objetivo</em></span>
-            <span class="metric-l">o que você quer alcançar</span>
-          </div>
-          <div class="metric">
-            <span class="metric-n" style="font-size:16px;letter-spacing:0">Perfil</span>
-            <span class="metric-l">seu apetite ao risco</span>
-          </div>
-          <div class="metric">
-            <span class="metric-n" style="font-size:14px;letter-spacing:-0.5px">Indicadores<br>& Cenário</span>
-            <span class="metric-l">Selic alta ou baixa? Bolsa?</span>
-          </div>
-        </div>
+    <div style="margin-bottom:2px">
+      <div style="background:var(--dark2);border:1px solid var(--border);padding:28px 32px 20px">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(20px,2.5vw,30px);text-transform:uppercase;color:var(--white);line-height:1.1;margin-bottom:6px">Rentabilidade não significa <em style="color:var(--blue-light);font-style:normal">assumir risco.</em></h3>
+        <p style="font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;color:var(--gray4);line-height:1.7;max-width:700px">O mercado vende a ideia de que para ganhar mais, é preciso arriscar mais. Discordamos. Uma carteira bem estruturada cresce de forma consistente sem colocar em risco o que você levou anos construindo.</p>
       </div>
-      <div class="chart-box">
-        <div class="chart-box-label">Rentabilidade acumulada (ilustrativo)</div>
-        <div class="chart-box-val">+47,3% <em>&uarr; consistente</em></div>
-        <div class="chart-svg-wrap">
-          <svg class="chart-svg" viewBox="0 0 300 140" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="chartGrad2" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#2563eb" stop-opacity="0.4"/>
-                <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path class="chart-area" d="M0,120 C30,112 50,105 80,95 C110,85 125,88 150,72 C175,56 185,60 210,44 C235,28 255,32 300,8 L300,140 L0,140 Z"/>
-            <path class="chart-line" d="M0,120 C30,112 50,105 80,95 C110,85 125,88 150,72 C175,56 185,60 210,44 C235,28 255,32 300,8"/>
-            <line x1="0" y1="35" x2="300" y2="35" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="0" y1="70" x2="300" y2="70" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="0" y1="105" x2="300" y2="105" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <circle class="chart-pulse" cx="300" cy="8" r="4" fill="#2563eb"/>
-          </svg>
-        </div>
-        <div class="chart-disc">Exemplo ilustrativo &middot; não representa garantia de retorno</div>
+    </div>
+
+    <!-- GRÁFICO HISTÓRICO -->
+    <div style="background:var(--dark2);border:1px solid var(--border);padding:24px 24px 16px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:16px">Gráfico de Rentabilidade Acumulada — Jul/2016 a Jan/2026</div>
+
+      <!-- LEGENDA -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;margin-bottom:16px">
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#ef4444"></div><span style="font-family:monospace;font-size:9px;color:#aaa">IPCA +7%</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#f97316"></div><span style="font-family:monospace;font-size:9px;color:#aaa">S&P500-TR</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#eab308"></div><span style="font-family:monospace;font-size:9px;color:#aaa">IBOV</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#22c55e"></div><span style="font-family:monospace;font-size:9px;color:#aaa">CDI</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#3b82f6"></div><span style="font-family:monospace;font-size:9px;color:#aaa">IMA-B</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#8b5cf6"></div><span style="font-family:monospace;font-size:9px;color:#aaa">IFIX</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#6b8078"></div><span style="font-family:monospace;font-size:9px;color:#aaa">Poupança</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:2px;background:#06b6d4;border-top:1px dashed #06b6d4"></div><span style="font-family:monospace;font-size:9px;color:#aaa">Dólar</span></div>
       </div>
+
+      <!-- SVG CHART -->
+      <div style="width:100%;overflow-x:auto">
+        <svg id="rentChart" viewBox="0 0 900 320" style="width:100%;min-width:600px;display:block" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gSP" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f97316" stop-opacity="0.15"/><stop offset="100%" stop-color="#f97316" stop-opacity="0"/></linearGradient>
+            <linearGradient id="gIBOV" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eab308" stop-opacity="0.15"/><stop offset="100%" stop-color="#eab308" stop-opacity="0"/></linearGradient>
+          </defs>
+
+          <!-- Grid -->
+          <line x1="60" y1="10" x2="60" y2="270" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <line x1="60" y1="270" x2="890" y2="270" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <!-- Gridlines horizontais -->
+          <line x1="60" y1="270" x2="890" y2="270" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="60" y1="215" x2="890" y2="215" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="60" y1="160" x2="890" y2="160" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="60" y1="105" x2="890" y2="105" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="60" y1="50" x2="890" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+
+          <!-- Labels Y -->
+          <text x="50" y="274" text-anchor="end" font-family="monospace" font-size="9" fill="#555">0%</text>
+          <text x="50" y="219" text-anchor="end" font-family="monospace" font-size="9" fill="#555">50%</text>
+          <text x="50" y="164" text-anchor="end" font-family="monospace" font-size="9" fill="#555">100%</text>
+          <text x="50" y="109" text-anchor="end" font-family="monospace" font-size="9" fill="#555">150%</text>
+          <text x="50" y="54" text-anchor="end" font-family="monospace" font-size="9" fill="#555">200%</text>
+
+          <!-- Labels X — anos 2016 a 2026 -->
+          <text x="60" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">07/16</text>
+          <text x="143" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">01/17</text>
+          <text x="226" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">07/18</text>
+          <text x="309" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">01/19</text>
+          <text x="392" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">07/20</text>
+          <text x="475" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">01/21</text>
+          <text x="558" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">07/22</text>
+          <text x="641" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">01/23</text>
+          <text x="724" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">07/24</text>
+          <text x="807" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">01/25</text>
+          <text x="890" y="288" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">01/26</text>
+
+          <!-- S&P500 ~292% acumulado em 10 anos — linha laranja, mais alta -->
+          <path d="M60,270 C120,265 180,255 240,245 C300,235 340,220 392,200 C440,185 480,178 520,168 C560,155 590,140 630,120 C670,100 710,88 750,75 C790,60 830,50 870,35 L890,32"
+            fill="none" stroke="#f97316" stroke-width="2" stroke-linejoin="round"/>
+
+          <!-- IBOV ~140% — linha amarela, volátil -->
+          <path d="M60,270 C80,260 100,250 130,240 C160,228 175,215 200,220 C225,225 240,210 270,195 C295,180 310,185 340,175 C365,165 380,155 410,148 C435,140 455,150 480,158 C505,165 520,155 545,145 C570,132 590,125 620,118 C650,110 670,105 700,100 C730,93 760,90 800,85 C830,78 860,72 890,68"
+            fill="none" stroke="#eab308" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- IPCA+7% ~86% — linha vermelha, suave crescimento -->
+          <path d="M60,270 C150,265 240,255 330,240 C420,225 510,208 600,190 C690,170 750,155 810,138 C850,128 870,122 890,118"
+            fill="none" stroke="#ef4444" stroke-width="2" stroke-linejoin="round"/>
+
+          <!-- CDI ~76% — linha verde -->
+          <path d="M60,270 C150,266 240,258 330,247 C420,234 510,218 600,202 C690,184 750,170 810,155 C850,145 870,140 890,128"
+            fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linejoin="round"/>
+
+          <!-- IMA-B ~43% — linha azul -->
+          <path d="M60,270 C150,268 240,263 330,256 C420,248 510,238 600,228 C690,216 750,206 810,196 C850,190 870,186 890,224"
+            fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- IFIX ~37% — linha roxa -->
+          <path d="M60,270 C150,268 240,264 330,258 C420,251 510,242 600,234 C690,225 750,217 810,210 C850,205 870,203 890,230"
+            fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- Poupança ~44% — linha cinza -->
+          <path d="M60,270 C150,268 240,264 330,258 C420,250 510,241 600,231 C690,220 750,210 810,200 C850,194 870,191 890,227"
+            fill="none" stroke="#6b8078" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="5,3"/>
+
+          <!-- Dólar ~-3% — linha ciano, vai e volta -->
+          <path d="M60,270 C100,268 150,265 200,260 C250,254 290,248 330,255 C370,262 400,258 440,265 C470,270 500,265 540,260 C570,255 600,258 640,262 C670,265 700,268 730,265 C760,260 800,262 840,264 C860,265 875,266 890,268"
+            fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="3,3"/>
+
+          <!-- Linha base 0% -->
+          <line x1="60" y1="270" x2="890" y2="270" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+
+          <!-- Labels finais à direita -->
+          <text x="893" y="35" font-family="monospace" font-size="8" fill="#f97316">S&P ~292%</text>
+          <text x="893" y="71" font-family="monospace" font-size="8" fill="#eab308">IBOV ~140%</text>
+          <text x="893" y="121" font-family="monospace" font-size="8" fill="#ef4444">IPCA+7 ~86%</text>
+          <text x="893" y="131" font-family="monospace" font-size="8" fill="#22c55e">CDI ~76%</text>
+          <text x="893" y="228" font-family="monospace" font-size="8" fill="#8b5cf6">IFIX ~37%</text>
+          <text x="893" y="232" font-family="monospace" font-size="8" fill="#3b82f6">IMA-B ~43%</text>
+          <text x="893" y="268" font-family="monospace" font-size="8" fill="#06b6d4">Dólar ~-3%</text>
+        </svg>
+      </div>
+      <div style="font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;margin-top:8px">Fonte: Mais Retorno · Rentabilidade histórica acumulada · Jul/2016 – Jan/2026 · Dados educacionais, não representam garantia de retorno</div>
+    </div>
+
+    <!-- TABELA HISTÓRICA -->
+    <div style="background:var(--dark2);border:1px solid var(--border);margin-top:2px;overflow-x:auto">
+      <div style="padding:16px 20px 8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--white)">Rentabilidade histórica</div>
+      <table style="width:100%;border-collapse:collapse;min-width:700px">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08)">
+            <th style="text-align:left;padding:8px 16px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">Ativo</th>
+            <th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">No mês</th>
+            <th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">No ano</th>
+            <th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">12M</th>
+            <th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">24M</th>
+            <th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">36M</th>
+            <th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">48M</th>
+            <th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:8px;letter-spacing:1px;color:#555;text-transform:uppercase;font-weight:400">60M</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#ef4444">IPCA +7% a.a.</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">0,94%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">5,84%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">11,94%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">26,17%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">40,19%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">55,83%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">86,33%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#22c55e">CDI</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">0,97%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">5,55%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">14,76%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">28,24%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">43,67%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">62,95%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">75,75%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#f97316">S&P500-TR</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#f97316;font-weight:600">🏆 4,43%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#f97316;font-weight:600">🏆 10,38%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#f97316;font-weight:600">🏆 29,27%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#f97316;font-weight:600">🏆 45,41%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#f97316;font-weight:600">🏆 86,25%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#f97316;font-weight:600">🏆 92,83%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#f97316;font-weight:600">🏆 92,26%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#eab308">IBOV</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#ef4444">-6,18%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">9,07%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">26,54%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">41,98%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">59,28%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">58,28%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">39,97%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#3b82f6">IMA-B</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">0,30%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">5,16%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">10,50%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">16,32%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">23,94%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">37,49%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">42,96%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#8b5cf6">IFIX</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#ef4444">-1,94%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">2,08%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">11,94%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">14,57%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">28,15%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">37,02%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">37,07%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#6b8078">Poupança</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">0,58%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">3,20%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">8,01%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">16,68%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">26,03%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">36,32%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">43,69%</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 16px;font-family:'Barlow',sans-serif;font-size:13px;color:#06b6d4">Dólar</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">1,39%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#ef4444">-8,08%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#ef4444">-11,17%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#ef4444">-1,86%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">1,25%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#aaa">7,12%</td>
+            <td style="padding:9px 10px;text-align:right;font-family:monospace;font-size:11px;color:#ef4444">-3,26%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:10px 16px;font-family:monospace;font-size:8px;color:#444;text-transform:uppercase;letter-spacing:1px;border-top:1px solid rgba(255,255,255,0.05)">Fonte: Mais Retorno · Última atualização 31/01/2026 · Dados históricos, não representam garantia de retorno futuro</div>
     </div>
   </div>
 </section>
