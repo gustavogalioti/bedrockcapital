@@ -335,7 +335,7 @@
     <li><a href="#como">Como funciona</a></li>
     <li><a href="#preco">Investimento</a></li>
     <li><a href="#comotrabalho">Como trabalho</a></li>
-    <li><a href="#paraquem">Para quem</a></li>
+    <li><a href="#comparativos">Comparativos</a></li>
     <li><a href="#contato">Contato</a></li>
     <li><a href="#" style="color:var(--blue-light);opacity:0.6" title="Em breve">Educacional &#128274;</a></li>
   </ul>
@@ -580,31 +580,212 @@
   </div>
 </section>
 
-<!-- PARA QUEM -->
-<section id="paraquem">
+<!-- VEJA COMO NÃO É DIFÍCIL -->
+<section id="comparativos">
   <div class="wrap">
-    <div class="tag">Para quem</div>
-    <h2 class="sec-title">A Badrock Capital é para você?</h2>
-    <p class="sec-desc">Somos seletivos por escolha. Atendemos melhor quando o perfil e o momento fazem sentido.</p>
-    <div class="pq-grid">
-      <div class="check-list">
-        <div class="check-item"><div class="check-px"></div><p class="check-text"><strong>Tem patrimônio construído</strong> e quer gerenciá-lo com mais estratégia e clareza.</p></div>
-        <div class="check-item"><div class="check-px"></div><p class="check-text"><strong>Sente que está investindo</strong> mas não sabe se está no caminho certo para seus objetivos.</p></div>
-        <div class="check-item"><div class="check-px"></div><p class="check-text"><strong>Quer uma segunda opinião</strong> independente sobre o que seu banco ou corretora recomenda.</p></div>
-        <div class="check-item"><div class="check-px"></div><p class="check-text"><strong>Tem eventos financeiros importantes</strong> à frente — herança, venda de imóvel, aposentadoria — e precisa de clareza.</p></div>
-        <div class="check-item"><div class="check-px"></div><p class="check-text"><strong>Valoriza qualidade</strong> acima de quantidade. Prefere uma conversa real a um relatório genérico.</p></div>
-      </div>
-      <div class="nao-list">
-        <div class="nao-header">// Provavelmente não é o momento certo se você...</div>
-        <div class="nao-item"><div class="nao-px"></div><p class="nao-text">Busca dicas de ações para ganho rápido ou retorno imediato.</p></div>
-        <div class="nao-item"><div class="nao-px"></div><p class="nao-text">Ainda não tem reserva de emergência constituída.</p></div>
-        <div class="nao-item"><div class="nao-px"></div><p class="nao-text">Quer garantia de rentabilidade acima do mercado.</p></div>
-        <div class="nao-item"><div class="nao-px"></div><p class="nao-text">Não está disposto a ter visão de médio e longo prazo.</p></div>
-        <a href="#contato" class="btn-primary" style="margin-top:20px">Verificar se sou o perfil &rarr;</a>
-      </div>
-    </div>
+    <div class="tag">Educação financeira</div>
+    <h2 class="sec-title">Veja como não<br><em>é difícil.</em></h2>
+    <p class="sec-desc">R$ 100.000 investidos. Veja o que cada escolha entrega ao longo do tempo — com números reais.</p>
+
+    <div id="comparativos-app"></div>
   </div>
 </section>
+
+<script>
+(function() {
+  // ─── TAXAS BASE (aproximadas 2024) ───────────────────────────────
+  const CDI_ANUAL   = 0.1065; // ~10.65% a.a.
+  const SELIC_ANUAL = 0.1075;
+  const POUP_ANUAL  = 0.0706; // 70% Selic quando Selic > 8.5%
+  const IPCA_ANUAL  = 0.0483;
+  const IBOV_ANUAL  = 0.1200; // média histórica ~12%
+  const SP500_ANUAL = 0.1350; // média histórica ~13.5% BRL
+
+  const inicial = 100000;
+  const anos = [0,1,2,3,5,10];
+
+  function crescer(taxa, ano) {
+    return inicial * Math.pow(1 + taxa, ano);
+  }
+
+  function fmt(v) {
+    return 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:0, maximumFractionDigits:0});
+  }
+
+  function pct(taxa) {
+    return (taxa * 100).toFixed(1) + '% a.a.';
+  }
+
+  // ─── DADOS DOS COMPARATIVOS ──────────────────────────────────────
+  const comparativos = [
+    {
+      id: 'comp1',
+      titulo: 'Poupança vs CDB 100% CDI',
+      subtitulo: 'Liquidez diária — mesmo acesso ao dinheiro, retorno bem diferente',
+      series: [
+        { nome: 'Poupança', taxa: POUP_ANUAL, cor: '#6b8078', info: pct(POUP_ANUAL) },
+        { nome: 'CDB 100% CDI', taxa: CDI_ANUAL, cor: '#2563eb', info: pct(CDI_ANUAL) },
+      ]
+    },
+    {
+      id: 'comp2',
+      titulo: 'Poupança vs CDB vs LCA 92% CDI',
+      subtitulo: 'LCA isenta de IR para pessoa física — vantagem tributária real',
+      series: [
+        { nome: 'Poupança', taxa: POUP_ANUAL, cor: '#6b8078', info: pct(POUP_ANUAL) },
+        { nome: 'CDB 100% CDI', taxa: CDI_ANUAL * 0.85, cor: '#3b82f6', info: pct(CDI_ANUAL * 0.85) + ' (líq. IR)' },
+        { nome: 'LCA 92% CDI', taxa: CDI_ANUAL * 0.92, cor: '#4ade80', info: pct(CDI_ANUAL * 0.92) + ' (isento IR)' },
+      ]
+    },
+    {
+      id: 'comp3',
+      titulo: 'CDB 100% CDI vs Fundo Conservador 105% CDI',
+      subtitulo: 'Gestão ativa entregando acima do CDI com mesma liquidez diária',
+      series: [
+        { nome: 'CDB 100% CDI', taxa: CDI_ANUAL * 0.85, cor: '#3b82f6', info: pct(CDI_ANUAL * 0.85) + ' (líq. IR)' },
+        { nome: 'Fundo 105% CDI', taxa: CDI_ANUAL * 1.05 * 0.85, cor: '#fbbf24', info: pct(CDI_ANUAL * 1.05 * 0.85) + ' (líq. IR)' },
+      ]
+    },
+    {
+      id: 'comp4',
+      titulo: 'Grande comparativo — 10 anos',
+      subtitulo: 'IPCA+7 · Poupança · CDB · Selic · Ibovespa · S&P500 (em BRL)',
+      series: [
+        { nome: 'Poupança', taxa: POUP_ANUAL, cor: '#6b8078', info: pct(POUP_ANUAL) },
+        { nome: 'CDB 100% CDI', taxa: CDI_ANUAL * 0.85, cor: '#3b82f6', info: pct(CDI_ANUAL * 0.85) },
+        { nome: 'Selic', taxa: SELIC_ANUAL * 0.85, cor: '#60a5fa', info: pct(SELIC_ANUAL * 0.85) },
+        { nome: 'IPCA + 7%', taxa: IPCA_ANUAL + 0.07, cor: '#c084fc', info: pct(IPCA_ANUAL + 0.07) },
+        { nome: 'Ibovespa', taxa: IBOV_ANUAL, cor: '#f97316', info: pct(IBOV_ANUAL) },
+        { nome: 'S&P 500 (BRL)', taxa: SP500_ANUAL, cor: '#4ade80', info: pct(SP500_ANUAL) },
+      ]
+    }
+  ];
+
+  // ─── RENDER ──────────────────────────────────────────────────────
+  const container = document.getElementById('comparativos-app');
+
+  comparativos.forEach((comp, ci) => {
+    const anos10 = [0,1,2,3,5,7,10];
+
+    // Wrapper
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'margin-bottom:2px;background:#3a3a3a;border:1px solid rgba(255,255,255,0.09);padding:28px 28px 24px';
+
+    // Título
+    wrap.innerHTML = `
+      <div style="margin-bottom:18px">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;letter-spacing:1px;text-transform:uppercase;color:#f5f5f5;margin-bottom:4px">${comp.titulo}</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:#aaa">${comp.subtitulo}</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px" id="legend-${ci}"></div>
+      <div style="position:relative;width:100%;height:200px;margin-bottom:20px">
+        <canvas id="canvas-${ci}" style="width:100%;height:100%"></canvas>
+      </div>
+      <div id="table-${ci}" style="overflow-x:auto"></div>
+    `;
+    container.appendChild(wrap);
+
+    // Legenda
+    const legend = wrap.querySelector(`#legend-${ci}`);
+    comp.series.forEach(s => {
+      legend.innerHTML += `<div style="display:flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;color:#aaa;text-transform:uppercase">
+        <div style="width:12px;height:3px;background:${s.cor};flex-shrink:0"></div>${s.nome} <span style="color:${s.cor}">${s.info}</span>
+      </div>`;
+    });
+
+    // GRÁFICO DE BARRAS com SVG inline
+    const svgDiv = wrap.querySelector(`#canvas-${ci}`);
+    const svgW = 600, svgH = 180;
+    const padL = 80, padR = 16, padT = 10, padB = 30;
+    const chartW = svgW - padL - padR;
+    const chartH = svgH - padT - padB;
+
+    const allVals = anos10.flatMap(a => comp.series.map(s => crescer(s.taxa, a)));
+    const maxVal = Math.max(...allVals);
+    const minVal = inicial;
+
+    const groups = anos10.length;
+    const seriesN = comp.series.length;
+    const groupW = chartW / groups;
+    const barW = Math.min(groupW * 0.7 / seriesN, 28);
+    const gap = (groupW - barW * seriesN) / 2;
+
+    function vy(v) {
+      return padT + chartH - ((v - minVal) / (maxVal - minVal)) * chartH;
+    }
+
+    let bars = '';
+    anos10.forEach((a, gi) => {
+      comp.series.forEach((s, si) => {
+        const v = crescer(s.taxa, a);
+        const x = padL + gi * groupW + gap + si * barW;
+        const y = vy(v);
+        const h = padT + chartH - y;
+        bars += `<rect x="${x}" y="${y}" width="${barW - 1}" height="${h}" fill="${s.cor}" opacity="0.85" rx="1"/>`;
+      });
+    });
+
+    // Gridlines + eixo Y
+    let gridlines = '';
+    const ticks = 4;
+    for (let i = 0; i <= ticks; i++) {
+      const v = minVal + (maxVal - minVal) * (i / ticks);
+      const y = vy(v);
+      gridlines += `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+      const label = v >= 1000000 ? 'R$' + (v/1000000).toFixed(1) + 'M' : 'R$' + (v/1000).toFixed(0) + 'k';
+      gridlines += `<text x="${padL - 5}" y="${y + 4}" text-anchor="end" font-family="monospace" font-size="8" fill="#777">${label}</text>`;
+    }
+
+    // Labels eixo X
+    let xlabels = '';
+    anos10.forEach((a, gi) => {
+      const x = padL + gi * groupW + groupW / 2;
+      xlabels += `<text x="${x}" y="${svgH - 6}" text-anchor="middle" font-family="monospace" font-size="8" fill="#666">${a === 0 ? 'Hoje' : a + 'a'}</text>`;
+    });
+
+    svgDiv.innerHTML = `<svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%;height:100%" xmlns="http://www.w3.org/2000/svg">
+      ${gridlines}${bars}${xlabels}
+    </svg>`;
+
+    // TABELA
+    const tableDiv = wrap.querySelector(`#table-${ci}`);
+    const amostra = ci < 3 ? [1,2,3,5,10] : [1,3,5,10];
+    let thead = '<tr><th style="text-align:left;padding:8px 10px;font-family:monospace;font-size:9px;letter-spacing:1px;color:#666;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.08)">Período</th>';
+    comp.series.forEach(s => {
+      thead += `<th style="text-align:right;padding:8px 10px;font-family:monospace;font-size:9px;letter-spacing:1px;color:${s.cor};text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.08)">${s.nome}</th>`;
+    });
+    thead += '</tr>';
+
+    let tbody = '';
+    amostra.forEach(a => {
+      tbody += `<tr>`;
+      tbody += `<td style="padding:8px 10px;font-family:monospace;font-size:9px;color:#888;border-bottom:1px solid rgba(255,255,255,0.04)">${a} ${a === 1 ? 'ano' : 'anos'}</td>`;
+      comp.series.forEach(s => {
+        const v = crescer(s.taxa, a);
+        const ganho = v - inicial;
+        tbody += `<td style="padding:8px 10px;text-align:right;border-bottom:1px solid rgba(255,255,255,0.04)">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#f5f5f5">${fmt(v)}</div>
+          <div style="font-family:monospace;font-size:8px;color:${s.cor}">+${fmt(ganho)}</div>
+        </td>`;
+      });
+      tbody += '</tr>';
+    });
+
+    tableDiv.innerHTML = `<table style="width:100%;border-collapse:collapse;min-width:400px">${thead}${tbody}</table>`;
+  });
+
+  // Nota de rodapé
+  const nota = document.createElement('div');
+  nota.style.cssText = 'margin-top:2px;background:#323232;border:1px solid rgba(255,255,255,0.07);padding:16px 24px;display:flex;align-items:center;gap:12px';
+  nota.innerHTML = `
+    <div style="width:6px;height:6px;background:#3b82f6;flex-shrink:0"></div>
+    <p style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:#888;line-height:1.6">
+      <strong style="color:#aaa">Simulação educacional.</strong> Taxas aproximadas com base em dados históricos recentes. IR calculado conforme tabela regressiva (22,5% até 180 dias, 15% acima de 720 dias). Rentabilidades passadas não garantem resultados futuros. S&P 500 convertido para BRL sem hedge cambial.
+    </p>
+  `;
+  container.appendChild(nota);
+})();
+</script>
 
 <!-- CONTATO -->
 <section id="contato">
