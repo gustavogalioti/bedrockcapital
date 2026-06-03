@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartão Bedrock Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#1a1a1a;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    gap:40px;
+    padding:40px 20px;
+    font-family:'Barlow',sans-serif;
+  }
+
+  .label {
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:3px;
+    color:#555;
+    text-transform:uppercase;
+    margin-bottom:12px;
+  }
+
+  /* ── CARD BASE ── */
+  .card {
+    width:90mm;
+    height:50mm;
+    position:relative;
+    overflow:hidden;
+    background:#0d0d0d;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 20px 60px rgba(0,0,0,0.7);
+  }
+
+  .card::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size:6mm 6mm;
+  }
+
+  /* Blue accent top */
+  .card::after {
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:2px;
+    background:linear-gradient(90deg, #1d4ed8, #3b82f6, transparent);
+  }
+
+  .corner {
+    position:absolute;
+    width:4mm; height:4mm;
+    z-index:2;
+  }
+  .corner.tl { top:2mm; left:2mm; border-top:1px solid rgba(37,99,235,0.45); border-left:1px solid rgba(37,99,235,0.45); }
+  .corner.tr { top:2mm; right:2mm; border-top:1px solid rgba(37,99,235,0.45); border-right:1px solid rgba(37,99,235,0.45); }
+  .corner.bl { bottom:2mm; left:2mm; border-bottom:1px solid rgba(37,99,235,0.45); border-left:1px solid rgba(37,99,235,0.45); }
+  .corner.br { bottom:2mm; right:2mm; border-bottom:1px solid rgba(37,99,235,0.45); border-right:1px solid rgba(37,99,235,0.45); }
+
+  /* ── FRENTE ── */
+  .card-inner {
+    position:relative;
+    z-index:1;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:5mm 6mm 4mm;
+  }
+
+  .card-logo {
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .cube-img {
+    width:10mm;
+    height:10mm;
+    object-fit:contain;
+    flex-shrink:0;
+  }
+
+  .logo-text { display:flex; flex-direction:column; gap:0; line-height:1; }
+
+  .logo-name {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:900;
+    font-size:16px;
+    letter-spacing:3px;
+    color:#ffffff;
+    line-height:1;
+  }
+
+  .logo-sub {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:8px;
+    letter-spacing:6px;
+    color:#2563eb;
+    line-height:1;
+    margin-top:1px;
+  }
+
+  .card-person { display:flex; flex-direction:column; gap:2px; }
+
+  .person-name {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:1px;
+    color:#f0f0f0;
+    text-transform:uppercase;
+  }
+
+  .person-role {
+    font-family:'Space Mono',monospace;
+    font-size:5.5px;
+    letter-spacing:1.5px;
+    color:#2563eb;
+    text-transform:uppercase;
+  }
+
+  .card-contact { display:flex; flex-direction:column; gap:2.5px; }
+
+  .contact-item {
+    display:flex;
+    align-items:center;
+    gap:4px;
+    font-family:'Space Mono',monospace;
+    font-size:6px;
+    letter-spacing:0.5px;
+    color:#777;
+  }
+
+  .dot { width:3px; height:3px; background:#2563eb; flex-shrink:0; }
+
+  /* ── VERSO ── */
+  .back-inner {
+    position:relative;
+    z-index:1;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:4mm 6mm;
+    gap:6mm;
+  }
+
+  .back-text { flex:1; display:flex; flex-direction:column; gap:3mm; }
+
+  .back-logo-row {
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+
+  .back-brand {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:900;
+    font-size:13px;
+    letter-spacing:2px;
+    color:#fff;
+  }
+  .back-brand span { color:#2563eb; }
+
+  .back-tagline {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.5px;
+    color:#f0f0f0;
+    line-height:1.25;
+    text-transform:uppercase;
+  }
+  .back-tagline em { color:#2563eb; font-style:normal; display:block; }
+
+  .back-url {
+    font-family:'Space Mono',monospace;
+    font-size:6px;
+    letter-spacing:1.5px;
+    color:#3b82f6;
+  }
+
+  /* QR */
+  .qr-wrap {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2mm;
+    flex-shrink:0;
+  }
+
+  .qr-box {
+    width:28mm;
+    height:28mm;
+    background:#fff;
+    padding:1.5mm;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .qr-scan {
+    font-family:'Space Mono',monospace;
+    font-size:5px;
+    letter-spacing:1px;
+    color:#555;
+    text-transform:uppercase;
+    text-align:center;
+  }
+
+  /* accent bottom on back */
+  .card-back::after {
+    content:'';
+    position:absolute;
+    bottom:0; left:0; right:0;
+    height:2px;
+    background:linear-gradient(90deg, transparent, #3b82f6, #1d4ed8);
+  }
+</style>
+</head>
+<body>
+
+<div class="label">Frente</div>
+
+<!-- FRENTE -->
+<div class="card">
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="card-inner">
+
+    <div class="card-logo">
+      <img src="cube.png" class="cube-img" alt="Bedrock">
+      <div class="logo-text">
+        <span class="logo-name">BEDROCK</span>
+        <span class="logo-sub">CAPITAL</span>
+      </div>
+    </div>
+
+    <div class="card-person">
+      <div class="person-name">Gustavo Galioti da Silva Prado</div>
+      <div class="person-role">Consultor de Investimentos Independente</div>
+    </div>
+
+    <div class="card-contact">
+      <div class="contact-item"><div class="dot"></div><span>+55 (11) 96639-0758 — WhatsApp</span></div>
+      <div class="contact-item"><div class="dot"></div><span>bedrockcapital.com.br</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="label" style="margin-top:24px">Verso</div>
+
+<!-- VERSO -->
+<div class="card card-back" style="position:relative">
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="back-inner">
+
+    <div class="back-text">
+      <div class="back-logo-row">
+        <img src="cube.png" style="width:20px;height:20px;object-fit:contain" alt="">
+        <div class="back-brand">BEDROCK <span>CAPITAL</span></div>
+      </div>
+      <div class="back-tagline">
+        A base sólida para<br>decisões financeiras<br><em>melhores.</em>
+      </div>
+      <div class="back-url">bedrockcapital.com.br</div>
+    </div>
+
+    <div class="qr-wrap">
+      <div class="qr-box">
+        <canvas id="qrCanvas" width="96" height="96"></canvas>
+      </div>
+      <div class="qr-scan">Escaneie para acessar</div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function() {
+  const canvas = document.getElementById('qrCanvas');
+  const ctx = canvas.getContext('2d');
+  const size = 96;
+
+  const tmp = document.createElement('div');
+  tmp.style.cssText = 'position:absolute;left:-9999px';
+  document.body.appendChild(tmp);
+
+  new QRCode(tmp, {
+    text: 'https://gustavogalioti.github.io/bedrockcapital/',
+    width: size,
+    height: size,
+    colorDark: '#111111',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  setTimeout(() => {
+    const qrImg = tmp.querySelector('img') || tmp.querySelector('canvas');
+    if (!qrImg) return;
+
+    const drawAll = () => {
+      ctx.drawImage(qrImg, 0, 0, size, size);
+
+      // Bedrock pixel block no centro
+      const bs = 20, bx = (size-bs)/2, by = (size-bs)/2;
+      const px = bs/4;
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(bx-3, by-3, bs+6, bs+6);
+
+      const cols = [
+        ['#2c2c2c','#4a4a4a','#2c2c2c','#555'],
+        ['#3a3a3a','#222','#4a4a4a','#333'],
+        ['#222','#3a3a3a','#555','#2c2c2c'],
+        ['#4a4a4a','#2c2c2c','#333','#3a3a3a'],
+      ];
+      cols.forEach((row, ri) => row.forEach((c, ci) => {
+        ctx.fillStyle = c;
+        ctx.fillRect(bx+ci*px, by+ri*px, px, px);
+      }));
+
+      ctx.fillStyle = 'rgba(37,99,235,0.7)';
+      ctx.fillRect(bx+px, by, px*2, px/2);
+    };
+
+    if (qrImg.tagName === 'IMG') {
+      qrImg.complete ? drawAll() : (qrImg.onload = drawAll);
+    } else {
+      drawAll();
+    }
+    document.body.removeChild(tmp);
+  }, 300);
+})();
+</script>
+</body>
+</html>
