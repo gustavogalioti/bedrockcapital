@@ -682,193 +682,169 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:32px 6
 })();
 
 // ── GLOBO PIXEL ART MINECRAFT ──
-window.addEventListener("load", function() { (function(){
+window.addEventListener("load", function() {
   const canvas = document.getElementById('globeCanvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  const cx = W/2, cy = H/2, R = W/2 - 10;
+  const W=380, H=380, cx=190, cy=190, R=182;
+  let rotY=0, dragging=false, lastX=0;
 
-  // Mapa simplificado de continentes em grade lat/lon
-  // 1=terra, 0=mar — resolução 72x36
-  const COLS = 72, ROWS = 36;
-  // Mapa approximado dos continentes (1=terra)
+  canvas.addEventListener('mousedown', e=>{dragging=true; lastX=e.clientX;});
+  window.addEventListener('mousemove', e=>{if(dragging){rotY+=(e.clientX-lastX)*0.5; lastX=e.clientX;}});
+  window.addEventListener('mouseup', ()=>dragging=false);
+  canvas.addEventListener('touchstart', e=>{dragging=true; lastX=e.touches[0].clientX;});
+  canvas.addEventListener('touchmove', e=>{if(dragging){rotY+=(e.touches[0].clientX-lastX)*0.5; lastX=e.touches[0].clientX;}});
+  canvas.addEventListener('touchend', ()=>dragging=false);
+
   function isLand(lat, lon) {
     // América do Norte
-    if(lat>15&&lat<75&&lon>-170&&lon<-50) {
-      if(lat>50) return lon>-140&&lon<-55;
-      if(lat>30) return lon>-125&&lon<-60;
-      return lon>-110&&lon<-60;
-    }
+    if(lat>25&&lat<72&&lon>-125&&lon<-60) return true;
+    if(lat>15&&lat<25&&lon>-105&&lon<-60) return true;
+    if(lat>7&&lat<15&&lon>-90&&lon<-60) return true;
     // América do Sul
-    if(lat>-60&&lat<15&&lon>-85&&lon<-30) return true;
+    if(lat>-56&&lat<7&&lon>-82&&lon<-34) return true;
     // Europa
-    if(lat>35&&lat<72&&lon>-10&&lon<40) return true;
+    if(lat>36&&lat<71&&lon>-10&&lon<40) return true;
+    if(lat>56&&lat<71&&lon>4&&lon<30) return true;
     // África
-    if(lat>-35&&lat<38&&lon>-20&&lon<52) return true;
+    if(lat>-35&&lat<37&&lon>-18&&lon<51) return true;
+    // Oriente Médio
+    if(lat>15&&lat<42&&lon>26&&lon<63) return true;
     // Ásia
-    if(lat>0&&lat<75&&lon>40&&lon<145) return true;
-    if(lat>-10&&lat<0&&lon>95&&lon<145) return true;
+    if(lat>0&&lat<77&&lon>60&&lon<140) return true;
+    if(lat>-10&&lat<20&&lon>95&&lon<140) return true;
+    if(lat>30&&lat<45&&lon>128&&lon<145) return true;
     // Austrália
-    if(lat>-45&&lat<-10&&lon>113&&lon<154) return true;
+    if(lat>-44&&lat<-10&&lon>113&&lon<154) return true;
     // Groenlândia
-    if(lat>60&&lat<84&&lon>-60&&lon<-15) return true;
+    if(lat>60&&lat<84&&lon>-58&&lon<-15) return true;
     return false;
   }
 
-  let rotY = 0;
-  let isDragging = false;
-  let lastX = 0;
-  let autoSpin = true;
-
-  canvas.addEventListener('mousedown', e => { isDragging=true; lastX=e.clientX; autoSpin=false; });
-  window.addEventListener('mousemove', e => { if(isDragging) { rotY += (e.clientX-lastX)*0.4; lastX=e.clientX; }});
-  window.addEventListener('mouseup', () => { isDragging=false; setTimeout(()=>autoSpin=true, 2000); });
-  canvas.addEventListener('touchstart', e => { isDragging=true; lastX=e.touches[0].clientX; autoSpin=false; });
-  canvas.addEventListener('touchmove', e => { if(isDragging){ rotY+=(e.touches[0].clientX-lastX)*0.4; lastX=e.touches[0].clientX; }});
-  canvas.addEventListener('touchend', () => { isDragging=false; setTimeout(()=>autoSpin=true, 2000); });
-
-  // Cidades financeiras
-  const cities = [
-    {name:'New York', lat:40.7, lon:-74.0, color:'#60a5fa'},
-    {name:'London', lat:51.5, lon:-0.1, color:'#60a5fa'},
-    {name:'Tokyo', lat:35.7, lon:139.7, color:'#60a5fa'},
-    {name:'São Paulo', lat:-23.5, lon:-46.6, color:'#f97316'},
-    {name:'Shanghai', lat:31.2, lon:121.5, color:'#60a5fa'},
-    {name:'Singapore', lat:1.3, lon:103.8, color:'#60a5fa'},
-    {name:'Dubai', lat:25.2, lon:55.3, color:'#60a5fa'},
-    {name:'Frankfurt', lat:50.1, lon:8.7, color:'#60a5fa'},
-  ];
-
-  function latLonToXYZ(lat, lon, r, rotDeg) {
+  function project(lat, lon, ry) {
     const phi = (90-lat)*Math.PI/180;
-    const theta = (lon+rotDeg)*Math.PI/180;
-    const x = r*Math.sin(phi)*Math.cos(theta);
-    const y = r*Math.cos(phi);
-    const z = r*Math.sin(phi)*Math.sin(theta);
-    return {x: cx+x, y: cy-y, z};
+    const theta = (lon+ry)*Math.PI/180;
+    const x = R*Math.sin(phi)*Math.cos(theta);
+    const y = R*Math.cos(phi);
+    const z = R*Math.sin(phi)*Math.sin(theta);
+    return {x:cx+x, y:cy-y, z};
   }
 
   function draw() {
     ctx.clearRect(0,0,W,H);
 
-    // Fundo do globo — gradiente oceano
-    const bgGrad = ctx.createRadialGradient(cx-R*0.3, cy-R*0.3, R*0.05, cx, cy, R);
-    bgGrad.addColorStop(0, '#1a4a8a');
-    bgGrad.addColorStop(0.6, '#0d2d5a');
-    bgGrad.addColorStop(1, '#05152e');
+    // Clip to circle
+    ctx.save();
     ctx.beginPath();
     ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.fillStyle=bgGrad;
+    ctx.clip();
+
+    // Ocean background - vivid blue like Minecraft
+    const bg = ctx.createRadialGradient(cx-R*0.3, cy-R*0.3, R*0.05, cx, cy, R);
+    bg.addColorStop(0, '#2266cc');
+    bg.addColorStop(0.5, '#1144aa');
+    bg.addColorStop(1, '#0a2a6e');
+    ctx.beginPath();
+    ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.fillStyle=bg;
     ctx.fill();
 
-    // Pixel size para o grid
-    const STEP = 5; // graus por pixel
-    const lonSteps = 360/STEP;
-    const latSteps = 180/STEP;
+    // Draw pixel blocks - STEP controls block size (bigger = more Minecraft-like)
+    const STEP = 5;
+    for(let lat=88; lat>=-88; lat-=STEP) {
+      for(let lon=-180; lon<180; lon+=STEP) {
+        const midLat = lat - STEP/2;
+        const midLon = lon + STEP/2;
+        const p = project(midLat, midLon, rotY);
+        if(p.z < 0) continue;
 
-    // Desenha pixels de terra
-    for(let li=0; li<latSteps; li++) {
-      const lat = 90 - li*STEP - STEP/2;
-      for(let lo=0; lo<lonSteps; lo++) {
-        const lon = -180 + lo*STEP + STEP/2;
+        // Depth shading
+        const depth = 0.5 + 0.5*(p.z/R);
+        // Block size based on projection
+        const bw = Math.max(2, (R * STEP/90) * (0.3 + 0.7*(p.z/R)));
 
-        const p = latLonToXYZ(lat, lon, R*0.99, rotY);
-        if(p.z < 0) continue; // atrás do globo
-
-        if(!isLand(lat, lon)) continue;
-
-        // Tamanho do pixel na superfície
-        const size = Math.max(3, R * STEP/100 * (0.5 + 0.5*(p.z/R)));
-
-        // Cor da terra com variação
-        const shade = 0.7 + 0.3*(p.z/R);
-        const g = Math.floor(100*shade);
-        const r2 = Math.floor(40*shade);
-        ctx.fillStyle = `rgb(${r2},${g},${r2})`;
-        ctx.fillRect(p.x-size/2, p.y-size/2, size, size);
-
-        // Pixel art — borda mais escura
-        ctx.fillStyle = `rgba(0,0,0,0.15)`;
-        ctx.fillRect(p.x-size/2, p.y-size/2, size, 1);
-        ctx.fillRect(p.x-size/2, p.y-size/2, 1, size);
+        if(isLand(midLat, midLon)) {
+          // LAND — green blocks like Minecraft grass/dirt
+          const g = Math.floor(120*depth);
+          const r2 = Math.floor(50*depth);
+          const b2 = Math.floor(30*depth);
+          ctx.fillStyle = `rgb(${r2},${g},${b2})`;
+          ctx.fillRect(p.x-bw/2, p.y-bw/2, bw, bw);
+          // Pixel border — dark edge like Minecraft blocks
+          ctx.fillStyle = 'rgba(0,0,0,0.25)';
+          ctx.fillRect(p.x-bw/2, p.y-bw/2, bw, 1);
+          ctx.fillRect(p.x-bw/2, p.y-bw/2, 1, bw);
+          ctx.fillRect(p.x+bw/2-1, p.y-bw/2, 1, bw);
+          ctx.fillRect(p.x-bw/2, p.y+bw/2-1, bw, 1);
+        } else {
+          // OCEAN — blue blocks, slightly darker in depth
+          const b2 = Math.floor(180*depth);
+          const r2 = Math.floor(20*depth);
+          const g2 = Math.floor(80*depth);
+          ctx.fillStyle = `rgb(${r2},${g2},${b2})`;
+          ctx.fillRect(p.x-bw/2, p.y-bw/2, bw, bw);
+          // Subtle ocean wave lines
+          ctx.fillStyle = 'rgba(100,160,255,0.08)';
+          ctx.fillRect(p.x-bw/2, p.y-bw/2, bw, 1);
+        }
       }
     }
 
-    // Grade de lat/lon sutil
-    const gridColor = 'rgba(37,99,235,0.12)';
-    for(let lat=-60; lat<=60; lat+=30) {
-      ctx.beginPath();
-      let first=true;
-      for(let lon=-180; lon<=180; lon+=3) {
-        const p = latLonToXYZ(lat, lon, R, rotY);
-        if(p.z<0){first=true;continue;}
-        first ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y);
-        first=false;
-      }
-      ctx.strokeStyle=gridColor; ctx.lineWidth=0.5; ctx.stroke();
-    }
-    for(let lon=-180; lon<=180; lon+=30) {
-      ctx.beginPath();
-      let first=true;
-      for(let lat=-80; lat<=80; lat+=3) {
-        const p = latLonToXYZ(lat, lon, R, rotY);
-        if(p.z<0){first=true;continue;}
-        first ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y);
-        first=false;
-      }
-      ctx.strokeStyle=gridColor; ctx.lineWidth=0.5; ctx.stroke();
-    }
+    ctx.restore();
 
-    // Cidades
-    const t = Date.now()/1000;
-    cities.forEach(c => {
-      const p = latLonToXYZ(c.lat, c.lon, R, rotY);
-      if(p.z < 5) return;
-      const pulse = 0.5+0.5*Math.sin(t*2+c.lon);
-      // Halo
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,5+pulse*4,0,Math.PI*2);
-      ctx.fillStyle=c.color.replace(')',`,${0.2*pulse})`).replace('rgb','rgba');
-      ctx.fill();
-      // Ponto
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,3,0,Math.PI*2);
-      ctx.fillStyle=c.color;
-      ctx.fill();
+    // Latitude/longitude lines on top
+    const gc = 'rgba(80,140,255,0.12)';
+    [-60,-30,0,30,60].forEach(lat => {
+      ctx.beginPath(); let f=true;
+      for(let lo=-180;lo<=180;lo+=3){const p=project(lat,lo,rotY);if(p.z<0){f=true;continue}f?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);f=false;}
+      ctx.strokeStyle=gc; ctx.lineWidth=0.5; ctx.stroke();
     });
 
-    // Borda brilhante
-    const rimGrad = ctx.createRadialGradient(cx,cy,R*0.85,cx,cy,R);
-    rimGrad.addColorStop(0,'transparent');
-    rimGrad.addColorStop(1,'rgba(37,99,235,0.25)');
-    ctx.beginPath();
-    ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.fillStyle=rimGrad;
-    ctx.fill();
+    // City dots
+    const now = Date.now()/1000;
+    [
+      {lat:40.7,lon:-74.0,c:'#60a5fa'},
+      {lat:51.5,lon:-0.1,c:'#60a5fa'},
+      {lat:35.7,lon:139.7,c:'#60a5fa'},
+      {lat:-23.5,lon:-46.6,c:'#f97316'},
+      {lat:31.2,lon:121.5,c:'#60a5fa'},
+      {lat:1.3,lon:103.8,c:'#60a5fa'},
+      {lat:50.1,lon:8.7,c:'#60a5fa'},
+      {lat:25.2,lon:55.3,c:'#60a5fa'},
+    ].forEach(c => {
+      const p = project(c.lat, c.lon, rotY);
+      if(p.z < 10) return;
+      const pulse = 0.5+0.5*Math.sin(now*2.5+c.lon*0.1);
+      ctx.beginPath(); ctx.arc(p.x,p.y,4+pulse*3,0,Math.PI*2);
+      ctx.fillStyle = `rgba(96,165,250,${0.2*pulse})`; ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x,p.y,2.5,0,Math.PI*2);
+      ctx.fillStyle = c.c; ctx.fill();
+    });
 
-    // Highlight topo esquerdo
-    const hlGrad = ctx.createRadialGradient(cx-R*0.35,cy-R*0.35,0,cx,cy,R);
-    hlGrad.addColorStop(0,'rgba(255,255,255,0.12)');
-    hlGrad.addColorStop(0.4,'rgba(255,255,255,0.03)');
-    hlGrad.addColorStop(1,'transparent');
-    ctx.beginPath();
-    ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.fillStyle=hlGrad;
-    ctx.fill();
+    // Rim glow
+    const rim = ctx.createRadialGradient(cx,cy,R*0.78,cx,cy,R);
+    rim.addColorStop(0,'transparent');
+    rim.addColorStop(1,'rgba(37,99,235,0.35)');
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.fillStyle=rim; ctx.fill();
 
-    // Borda
-    ctx.beginPath();
-    ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.strokeStyle='rgba(37,99,235,0.4)';
-    ctx.lineWidth=1.5;
-    ctx.stroke();
+    // Top-left highlight
+    const hl = ctx.createRadialGradient(cx-R*0.38,cy-R*0.38,0,cx,cy,R);
+    hl.addColorStop(0,'rgba(255,255,255,0.18)');
+    hl.addColorStop(0.35,'rgba(255,255,255,0.05)');
+    hl.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.fillStyle=hl; ctx.fill();
 
-    if(autoSpin && !isDragging) rotY += 0.2;
+    // Border
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.strokeStyle='rgba(37,99,235,0.5)'; ctx.lineWidth=1.5; ctx.stroke();
+
+    if(!dragging) rotY += 0.18;
     requestAnimationFrame(draw);
   }
   draw();
-  })(); }); // end load + IIFE
+});
 </script>
 
 </body>
